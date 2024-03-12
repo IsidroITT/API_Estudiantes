@@ -5,114 +5,123 @@ let studentsArray = [
         "numCtrol": "20400734",
         "nombre": "Isidro",
         "carrera": "ISC",
-        "materias": {
-            "Funis": 50,
-            "GPS": 87,
-            "Over": 100
-        },
+        "materias": [
+            {
+                "nombre": "Funis",
+                "calificacion": 90
+            },
+            {
+                "nombre": "Programación",
+                "calificacion": 68
+            },
+            {
+                "nombre": "Moviles",
+                "calificacion": 75
+            },
+            {
+                "nombre": "GPS",
+                "calificacion": 85
+            }
+        ],
         "semestre": "8"
     },
     {
         "numCtrol": "20400737",
         "nombre": "Isidro",
         "carrera": "ISC",
-        "materias": {
-            "Funis": 50,
-            "GPS": 87,
-            "Over": 100
-        },
+        "materias": [
+            {
+                "nombre": "Funis",
+                "calificacion": 90
+            },
+            {
+                "nombre": "Programación",
+                "calificacion": 68
+            },
+            {
+                "nombre": "Moviles",
+                "calificacion": 75
+            },
+            {
+                "nombre": "GPS",
+                "calificacion": 85
+            }
+        ],
         "semestre": "8"
     },
     {
         "numCtrol": "20400521",
         "nombre": "Maria",
         "carrera": "ITC",
-        "materias": {
-            "Database": 78,
-            "Networks": 92,
-            "Programming": 85
-        },
+        "materias": [
+            {
+                "nombre": "Funis",
+                "calificacion": 90
+            },
+            {
+                "nombre": "Programación",
+                "calificacion": 68
+            },
+            {
+                "nombre": "Moviles",
+                "calificacion": 75
+            },
+            {
+                "nombre": "GPS",
+                "calificacion": 85
+            }
+        ],
         "semestre": "6"
     },
     {
         "numCtrol": "20400678",
         "nombre": "Carlos",
         "carrera": "IME",
-        "materias": {
-            "Math": 95,
-            "Physics": 88,
-            "Chemistry": 75
-        },
+        "materias": [
+            {
+                "nombre": "Funis",
+                "calificacion": 90
+            },
+            {
+                "nombre": "Programación",
+                "calificacion": 68
+            },
+            {
+                "nombre": "Moviles",
+                "calificacion": 75
+            },
+            {
+                "nombre": "GPS",
+                "calificacion": 85
+            }
+        ],
         "semestre": "4"
     },
     {
         "numCtrol": "20400987",
         "nombre": "Laura",
         "carrera": "ISC",
-        "materias": {
-            "Algorithms": 80,
-            "Data Structures": 92,
-            "Web Development": 88
-        },
+        "materias": [
+            {
+                "nombre": "Funis",
+                "calificacion": 90
+            },
+            {
+                "nombre": "Programación",
+                "calificacion": 68
+            },
+            {
+                "nombre": "Moviles",
+                "calificacion": 75
+            },
+            {
+                "nombre": "GPS",
+                "calificacion": 85
+            }
+        ],
         "semestre": "7"
-    },
-    {
-        "numCtrol": "20400456",
-        "nombre": "Juan",
-        "carrera": "ITC",
-        "materias": {
-            "Mobile Apps": 75,
-            "UI/UX Design": 85,
-            "Databases": 90
-        },
-        "semestre": "5"
-    },
-    {
-        "numCtrol": "20400321",
-        "nombre": "Sofia",
-        "carrera": "IME",
-        "materias": {
-            "Statics": 85,
-            "Dynamics": 78,
-            "Mechanics": 92
-        },
-        "semestre": "3"
-    },
-    {
-        "numCtrol": "20400234",
-        "nombre": "Daniel",
-        "carrera": "ISC",
-        "materias": {
-            "AI": 88,
-            "Machine Learning": 94,
-            "Natural Language Processing": 87
-        },
-        "semestre": "9"
-    },
-    {
-        "numCtrol": "20400876",
-        "nombre": "Elena",
-        "carrera": "ITC",
-        "materias": {
-            "Cybersecurity": 90,
-            "Network Administration": 85,
-            "Operating Systems": 78
-        },
-        "semestre": "6"
-    },
-    {
-        "numCtrol": "20400123",
-        "nombre": "Roberto",
-        "carrera": "IME",
-        "materias": {
-            "Materials Science": 82,
-            "Thermodynamics": 75,
-            "Fluid Mechanics": 88
-        },
-        "semestre": "2"
     }
-]
-;
+];
 
 // Metodos get
 function getAllstudents(){
@@ -132,6 +141,18 @@ function getStudentAverage(numCtrol){
     const average = student.materias.reduce((acc, materia) => acc + materia.calificacion, 0) / student.materias.length;
     return average;
 };
+
+function getAllStudentAverage(){
+    const allAverages = studentsArray.map(student => {
+        return {
+            numCtrol: student.numCtrol,
+            nombre: student.nombre,
+            promedio: student.materias.reduce((acc, materia) => acc + materia.calificacion, 0) / student.materias.length
+        };
+    });
+
+    return allAverages;
+}
 
 function getFailedMaterias(numCtrol){
     const student = getStudentByNumCtrol(numCtrol);
@@ -200,6 +221,7 @@ module.exports = {
     getAllstudents,
     getStudentByNumCtrol,
     getStudentAverage,
+    getAllStudentAverage,
     getFailedMaterias,
     addStudent,
     updateStudentInfo,

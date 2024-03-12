@@ -90,9 +90,22 @@ router.get('/average', (req, res) => {
     return res.status(200).send({ average });
 });
 
+router.get('/averageAll', (req, res) => {
+    return res.status(200).send(studentsController.getAllStudentAverage());
+});
 
 //Rutas sobre '/students/failed'
+router.get('/failed', (req, res) => {
+    const numCtrol = req.query.numCtrol;
+    const failedMaterias = studentsController.getFailedMaterias(numCtrol);
 
+    // Validamos la existencia del estudiante
+    if (failedMaterias === null) {
+        return res.status(404).send({ error: 'No se encontró el estudiante' });
+    }
+
+    return res.status(200).send({ failedMaterias });
+});
 
 
 // Exportamos el router
